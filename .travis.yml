@@ -14,3 +14,10 @@ after_success:
   - docker build -t brianclyde11/multi-nginx ./nginx
   - docker build -t brianclyde11/multi-server ./server
   - docker build -t brianclyde11/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them into docker hub
+  - docker push brianclyde11/multi-client
+  - docker push brianclyde11/multi-nginx
+  - docker push brianclyde11/multi-server
+  - docker push brianclyde11/multi-worker
